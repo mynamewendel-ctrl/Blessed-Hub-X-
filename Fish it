@@ -1,3 +1,3 @@
 if game.PlaceId == 121864768012064 then
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/Bhx-FishIt2025.lua"))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/db219bac1a108f01.lua"))()
 end
