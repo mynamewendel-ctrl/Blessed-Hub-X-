@@ -1,3 +1,129 @@
-if game.PlaceId == 121864768012064 then
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/db219bac1a108f01.lua"))()
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+local discordLink = "https://discord.gg/Wzx2AdSTWs" -- coloque seu link real aqui
+
+-- ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "BlessedHubUpdateGui"
+screenGui.ResetOnSpawn = false
+screenGui.IgnoreGuiInset = true
+screenGui.Parent = PlayerGui
+
+-- Blur do fundo
+local blur = Instance.new("BlurEffect")
+blur.Size = 24
+blur.Parent = game.Lighting
+
+-- Frame central arredondado
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.6, 0, 0.35, 0)
+frame.Position = UDim2.new(0.2, 0, 0.325, 0)
+frame.AnchorPoint = Vector2.new(0,0)
+frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+frame.BackgroundTransparency = 0.15
+frame.BorderSizePixel = 0
+frame.ClipsDescendants = true
+frame.Parent = screenGui
+
+local uicornerFrame = Instance.new("UICorner")
+uicornerFrame.CornerRadius = UDim.new(0,25)
+uicornerFrame.Parent = frame
+
+-- Texto central
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(0.9, 0, 0.55, 0)
+textLabel.Position = UDim2.new(0.05, 0, 0.05, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "The script is offline for a while. For more news, join the Discord! (Not mandatory)"
+textLabel.TextColor3 = Color3.fromRGB(255,255,255)
+textLabel.TextScaled = true
+textLabel.Font = Enum.Font.GothamBold
+textLabel.TextStrokeTransparency = 0
+textLabel.TextStrokeColor3 = Color3.new(0,0,0)
+textLabel.TextWrapped = true
+textLabel.TextYAlignment = Enum.TextYAlignment.Top
+textLabel.Parent = frame
+
+-- Botão Discord arredondado
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0.35,0,0.2,0)
+button.Position = UDim2.new(0.325,0,0.7,0)
+button.BackgroundColor3 = Color3.fromRGB(88,101,242)
+button.BorderSizePixel = 0
+button.AnchorPoint = Vector2.new(0,0)
+button.AutoButtonColor = true
+button.Text = "Copy Link Discord"
+button.TextColor3 = Color3.fromRGB(255,255,255)
+button.Font = Enum.Font.GothamBold
+button.TextScaled = true
+button.TextStrokeTransparency = 0
+button.TextStrokeColor3 = Color3.new(0,0,0)
+button.Parent = frame
+
+local uicornerButton = Instance.new("UICorner")
+uicornerButton.CornerRadius = UDim.new(0,20)
+uicornerButton.Parent = button
+
+-- Container para logo e texto, para centralizar corretamente
+local uiList = Instance.new("UIListLayout")
+uiList.FillDirection = Enum.FillDirection.Horizontal
+uiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uiList.VerticalAlignment = Enum.VerticalAlignment.Center
+uiList.SortOrder = Enum.SortOrder.LayoutOrder
+uiList.Padding = UDim.new(0,8)
+uiList.Parent = button
+
+-- Logo Discord
+local discordLogo = Instance.new("ImageLabel")
+discordLogo.Size = UDim2.new(0,32,0,32)
+discordLogo.BackgroundTransparency = 1
+discordLogo.Image = "rbxassetid://10803117457"
+discordLogo.Parent = button
+
+-- Ajusta o texto para o meio automaticamente
+button.TextXAlignment = Enum.TextXAlignment.Center
+button.TextYAlignment = Enum.TextYAlignment.Center
+
+-- Hover do botão
+button.MouseEnter:Connect(function()
+	button.BackgroundColor3 = Color3.fromRGB(120,135,255)
+end)
+button.MouseLeave:Connect(function()
+	button.BackgroundColor3 = Color3.fromRGB(88,101,242)
+end)
+
+-- Clique copia link
+button.MouseButton1Click:Connect(function()
+	if setclipboard then
+		setclipboard(discordLink)
+	end
+end)
+
+-- Fade-in
+frame.BackgroundTransparency = 1
+textLabel.TextTransparency = 1
+button.BackgroundTransparency = 1
+discordLogo.ImageTransparency = 1
+
+local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+TweenService:Create(frame, tweenInfo, {BackgroundTransparency = 0.15}):Play()
+TweenService:Create(textLabel, tweenInfo, {TextTransparency = 0}):Play()
+TweenService:Create(button, tweenInfo, {BackgroundTransparency = 0}):Play()
+TweenService:Create(discordLogo, tweenInfo, {ImageTransparency = 0}):Play()
+
+-- Animação vertical (up-down) do frame e botão
+local function loopTween(object, yOffset, duration)
+	local originalPos = object.Position
+	while true do
+		TweenService:Create(object, TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = originalPos + UDim2.new(0,0,yOffset,0)}):Play()
+		wait(duration)
+		TweenService:Create(object, TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = originalPos}):Play()
+		wait(duration)
+	end
 end
+
+task.spawn(function() loopTween(textLabel, 0.02, 1.5) end)
+task.spawn(function() loopTween(button, 0.01, 1.2) end)
