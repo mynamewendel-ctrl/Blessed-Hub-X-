@@ -2,7 +2,7 @@ local StarterGui = game:GetService("StarterGui")
 local PlaceId = game.PlaceId
 
 local ScriptList = {
-    [107373293250] = "https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/FishItNow.lua"
+    [121864768012064] = "https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/FishItNow.lua"
 }
 
 local targetScript = ScriptList[PlaceId]
