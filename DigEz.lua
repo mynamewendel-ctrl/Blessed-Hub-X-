@@ -1,0 +1,1 @@
+LocalPlayer:Kick("Aviso [By Dev - Wendel]: Este script foi removido. Não é nossa intenção acabar com sua diversão, porém o jogo não possui mais um rumo definido e não trará benefícios futuros. Agradecemos a compreensão.")
