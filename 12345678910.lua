@@ -1,5 +1,5 @@
 --[[
-   Modified by Dev - wendel
+    Modified by Dev - wendel
 	Developed by: .chill.z. (Chillz)
 	Owned by: ardyxz (NatHub)
 ]]
@@ -9,7 +9,8 @@ local NatHub = {};
 
 local BlessedHubXColor = {
     Main = Color3.fromRGB(60,40,60),
-    MainDark = Color3.fromRGB(42,32,42)
+    MainDark = Color3.fromRGB(42,32,42),
+	Button = Color3.fromRGB(60,40,60)
 }
 
 -- NatHub
