@@ -2,7 +2,7 @@ local StarterGui = game:GetService("StarterGui")
 local PlaceId = game.PlaceId
 
 local ScriptList = {
-    [131623223084840] = "https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/BhxFreeVipEscapeTsunami.lua"
+    [131623223084840] = "https://raw.githubusercontent.com/mynamewendel-ctrl/Blessed-Hub-X-/refs/heads/main/games/Escape.txt"
 }
 
 local targetScript = ScriptList[PlaceId]
